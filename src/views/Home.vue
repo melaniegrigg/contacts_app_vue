@@ -13,7 +13,9 @@
       <p> Last Name: {{contact.last_name}}</p>
       <p> Email: {{contact.email}}</p>
       <p> Phone Number: {{contact.phone_number}}</p>
+        <button v-on:click="showContact(contact)">Show Contact</button>
     </div>
+
   </div>
 </template>
 
@@ -32,6 +34,7 @@ export default {
       newLastName: "",
       newEmail: "",
       newPhoneNumber: "",
+      currentContact: {},
     };
   },
   created: function () {
@@ -61,6 +64,11 @@ export default {
         console.log(response.data);
         this.contacts.push(response.data);
       });
+    },
+    showContact: function (contact) {
+      console.log(contact);
+      this.currentContact = contact;
+      document.querySelector("contact-details").showModal();
     },
   },
 };
